@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 
 namespace KK.Workflow.Service
 {
@@ -15,6 +16,11 @@ namespace KK.Workflow.Service
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.UseUrls("http://0.0.0.0:8001");
+                    webBuilder.UseSerilog((context, config) =>
+                    {
+                        config.ReadFrom.Configuration(context.Configuration);
+                    });
                 });
     }
 }

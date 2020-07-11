@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace KK.Workflow.Service
 {
@@ -21,6 +16,11 @@ namespace KK.Workflow.Service
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.UseUrls("http://0.0.0.0:8001");
+                    webBuilder.UseSerilog((context, config) =>
+                    {
+                        config.ReadFrom.Configuration(context.Configuration);
+                    });
                 });
     }
 }

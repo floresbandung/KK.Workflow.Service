@@ -1,0 +1,3 @@
+[submodule "KK.Workflow.Service/Common.Shared"]
+	path = KK.Workflow.Service/Common.Shared
+	url = git@github.com:floresbandung/Common.Shared.git

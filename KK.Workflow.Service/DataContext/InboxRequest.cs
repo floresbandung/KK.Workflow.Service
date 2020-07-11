@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using Workflow.Shared;
 
 namespace KK.Workflow.Service.DataContext
@@ -61,9 +60,9 @@ namespace KK.Workflow.Service.DataContext
         public string ViewNetworkInfo { get; set; }
         [Required]
         public ActionTypeEnum ActionType { get; set; }
-        [Column(TypeName = "nvarchar(MAX)")]
+        [StringLength(1024)]
         public string UrlAction { get; set; }
-        [Column(TypeName = "nvarchar(MAX)")]
+        [StringLength(1024)]
         public string JavascriptAction { get; set; }
         [Required]
         [StringLength(24)]

@@ -20,7 +20,8 @@
     "KK.Workflow.Service": {
       "commandName": "Project",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "workflowConnectionString": "server=localhost;port=55432;database=workflowDb;user id=postgres;password=getdown"
       }
     }
   }

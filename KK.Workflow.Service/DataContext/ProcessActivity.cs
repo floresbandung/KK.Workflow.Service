@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using Workflow.Shared;
 
 namespace KK.Workflow.Service.DataContext
@@ -37,7 +36,7 @@ namespace KK.Workflow.Service.DataContext
 
         public int? SlaTime { get; set; }
         public ActionTypeEnum? UrlActionType { get; set; }
-        [Column(TypeName = "nvarchar(MAX)")]
+        [StringLength(1024)]
         public string UrlAction { get; set; }
         [StringLength(256)]
         public string ApprovalJavascriptAction { get; set; }

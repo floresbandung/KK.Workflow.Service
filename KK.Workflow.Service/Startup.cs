@@ -43,6 +43,7 @@ namespace KK.Workflow.Service
             }
 
             app.MigrateDatabase().Wait();
+            app.InitData().Wait();
             app.UseRouting();
 
             app.UseAuthorization();

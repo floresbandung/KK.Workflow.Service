@@ -1,0 +1,34 @@
+﻿[
+    {
+        "Id": "33489d90-af7f-4877-86ff-d616204f55f5",
+        "RowStatus": 0,
+        "CompanyCode": "COM-X1",
+        "ModuleCode": "PR001",
+        "ModuleName": "REQUEST PROCUREMENT",
+        "ModuleDescription": "Approval pengajuan pembelian barang",
+        "StartActive": "2010-01-01 00:00:00",
+        "EndActive": "2100-01-01 00:00:00",
+        "WorkflowId": "d88f7652-e164-4df5-b624-1a2d96319872",
+        "Notes": "default",
+        "CreatedBy": "GEN",
+        "CreatedDate": "2010-01-01 00:00:00",
+        "ModifiedBy": "GEN",
+        "ModifiedDate": "2010-01-01 00:00:00"
+    },
+    {
+        "Id": "2e56faef-8827-4f73-952f-151e5c270798",
+        "RowStatus": 0,
+        "CompanyCode": "COM-X1",
+        "ModuleCode": "PR002",
+        "ModuleName": "REQUEST PAYMENT PROCUREMENT",
+        "ModuleDescription": "Approval pengajuan pembayaran pembelian",
+        "StartActive": "2010-01-01 00:00:00",
+        "EndActive": "2100-01-01 00:00:00",
+        "WorkflowId": "d88f7652-e164-4df5-b624-1a2d96319872",
+        "Notes": "default",
+        "CreatedBy": "GEN",
+        "CreatedDate": "2010-01-01 00:00:00",
+        "ModifiedBy": "GEN",
+        "ModifiedDate": "2010-01-01 00:00:00"
+    }
+]

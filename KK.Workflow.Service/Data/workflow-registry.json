@@ -1,0 +1,46 @@
+﻿[
+  {
+    "Id": "d88f7652-e164-4df5-b624-1a2d96319872",
+    "WorkflowName": "PROCUREMENT",
+    "WorkflowCode": "PRCRMT",
+    "Version": "1",
+    "RowStatus": 0,
+    "CreatedBy": "GEN",
+    "CreatedDate": "2010-01-01 00:00:00",
+    "ModifiedBy": "GEN",
+    "ModifiedDate": "2010-01-01 00:00:00"
+  },
+  {
+    "Id": "3e9143bd-3bb7-4960-9997-b5a5bbc57142",
+    "WorkflowName": "INVOICE",
+    "WorkflowCode": "INVOICE",
+    "Version": "1",
+    "RowStatus": 0,
+    "CreatedBy": "GEN",
+    "CreatedDate": "2010-01-01 00:00:00",
+    "ModifiedBy": "GEN",
+    "ModifiedDate": "2010-01-01 00:00:00"
+  },
+  {
+    "Id": "b2a9094f-ec8b-4776-92d3-5efd3a2b21b9",
+    "WorkflowName": "GENERAL LEDGER",
+    "WorkflowCode": "GL",
+    "Version": "1",
+    "RowStatus": 0,
+    "CreatedBy": "GEN",
+    "CreatedDate": "2010-01-01 00:00:00",
+    "ModifiedBy": "GEN",
+    "ModifiedDate": "2010-01-01 00:00:00"
+  },
+  {
+    "Id": "de32802e-5a61-4f30-b8ea-e220d83be436",
+    "WorkflowName": "FINANCE",
+    "WorkflowCode": "FINANCE",
+    "Version": "1",
+    "RowStatus": 0,
+    "CreatedBy": "GEN",
+    "CreatedDate": "2010-01-01 00:00:00",
+    "ModifiedBy": "GEN",
+    "ModifiedDate": "2010-01-01 00:00:00"
+  }
+]

@@ -19,7 +19,7 @@ namespace KK.Workflow.Service.DataContext
         {
             if (!optionsBuilder.IsConfigured)
             {
-                /*optionsBuilder.UseNpgsql("server=localhost;port=55432;database=workflowDb;user id=postgres;password=getdown");*/
+                //optionsBuilder.UseNpgsql("server=localhost;port=55432;database=workflowDb;user id=postgres;password=getdown");
                 optionsBuilder.UseNpgsql(Environment.GetEnvironmentVariable("workflowConnectionString") ?? throw new InvalidOperationException(StaticMessage.INVALID_CONNECTION_STRING));
             }
         }

@@ -3,15 +3,17 @@ using System;
 using KK.Workflow.Service.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace KK.Workflow.Service.Migrations
 {
     [DbContext(typeof(WorkflowDataContext))]
-    partial class WorkflowDataContextModelSnapshot : ModelSnapshot
+    [Migration("20200718193225_modify2")]
+    partial class modify2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

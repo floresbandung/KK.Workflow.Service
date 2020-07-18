@@ -15,9 +15,6 @@ namespace KK.Workflow.Service.DataContext
         [Required]
         [StringLength(32)]
         public string RequestNumber { get; set; }
-        [Required]
-        [StringLength(64)]
-        public string ReferenceKey { get; set; }
         [StringLength(128)]
         public string DocumentName { get; set; }
         [StringLength(64)]

@@ -14,9 +14,6 @@ namespace KK.Workflow.Service.DataContext
         [Required]
         public Guid ProcessActivityId { get; set; }
         [Required]
-        [StringLength(64)]
-        public string ReferenceKey { get; set; }
-        [Required]
         [StringLength(32)]
         public string RequestNumber { get; set; }
         [StringLength(128)]

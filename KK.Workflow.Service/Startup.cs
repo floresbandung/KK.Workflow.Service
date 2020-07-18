@@ -2,6 +2,7 @@ using System;
 using DD.Tata.Buku.Shared.Infrastructures;
 using DD.TataBuku.Shared.Fault;
 using KK.Workflow.Service.DataContext;
+using KK.Workflow.Service.Features;
 using KK.Workflow.Service.Infrastructures;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -29,6 +30,9 @@ namespace KK.Workflow.Service
             services.AddDbContext<WorkflowDataContext>(x =>
                 x.UseNpgsql(Environment.GetEnvironmentVariable("workflowConnectionString") ??
                             throw new InvalidOperationException(StaticMessage.INVALID_CONNECTION_STRING)));
+
+            services.AddMediatR(typeof(Features.NewProcess.Handler));
+            services.AddScoped<NumberingHelper>();
 
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(TransactionDecorator<,>));
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationDecorator<,>));

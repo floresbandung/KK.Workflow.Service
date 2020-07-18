@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 
 namespace KK.Workflow.Service.DataContext
 {
@@ -40,5 +41,8 @@ namespace KK.Workflow.Service.DataContext
         public DateTime? ModifiedDate { get; set; }
         public WorkflowRegistry WorkflowRegistry { get; set; }
         public IEnumerable<ProcessActivity> ProcessActivities { get; set; }
+        [StringLength(24)]
+        [Required]
+        public string RequestNumber { get; set; }
     }
 }

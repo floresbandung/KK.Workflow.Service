@@ -62,5 +62,6 @@ namespace KK.Workflow.Service.DataContext
         public ProcessRequest ProcessRequest { get; set; }
         public IEnumerable<ProcessActivityActor> ProcessActivityActors { get; set; }
         public IEnumerable<StatusRequest> StatusRequests { get; set; }
+        public IEnumerable<RequestActivity> RequestActivities { get; set; }
     }
 }

@@ -19,6 +19,7 @@ namespace KK.Workflow.Service.DataContext
         {
             if (!optionsBuilder.IsConfigured)
             {
+                /*optionsBuilder.UseNpgsql("server=localhost;port=55432;database=workflowDb;user id=postgres;password=getdown");*/
                 optionsBuilder.UseNpgsql(Environment.GetEnvironmentVariable("workflowConnectionString") ?? throw new InvalidOperationException(StaticMessage.INVALID_CONNECTION_STRING));
             }
         }
@@ -27,6 +28,15 @@ namespace KK.Workflow.Service.DataContext
         public virtual DbSet<TemplateProcessActivity> TemplateProcessActivities { get; set; }
         public virtual DbSet<TemplateProcessRequest> TemplateProcessRequests { get; set; }
         public virtual DbSet<TemplateProcessActivityActor> TemplateProcessActivityActors { get; set; }
+
+        public virtual DbSet<ProcessActivity> ProcessActivities { get; set; }
+        public virtual DbSet<ProcessRequest> ProcessRequests { get; set; }
+        public virtual DbSet<ProcessActivityActor> ProcessActivityActors { get; set; }
+        public virtual DbSet<StatusRequest> StatusRequests { get; set; }
+        public virtual DbSet<InboxRequest> InboxRequests { get; set; }
+        public virtual DbSet<ConfigurationNumber> ConfigurationNumbers { get; set; }
+        public virtual DbSet<RequestActivity> RequestActivities { get; set; }
+        public virtual DbSet<EmailTask> EmailTasks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -76,6 +86,11 @@ namespace KK.Workflow.Service.DataContext
                 .HasOne(x => x.StatusRequest)
                 .WithMany(x => x.InboxRequests)
                 .HasForeignKey(x => x.StatusRequestId);
+
+            modelBuilder.Entity<RequestActivity>()
+                .HasOne(x => x.ProcessActivity)
+                .WithMany(x => x.RequestActivities)
+                .HasForeignKey(x => x.ProcessActivityId);
         }
     }
 }

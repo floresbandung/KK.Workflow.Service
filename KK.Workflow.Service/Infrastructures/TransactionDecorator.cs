@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using KK.Workflow.Service.DataContext;
+using KK.Workflow.Service.Features;
 using MediatR;
 
 namespace KK.Workflow.Service.Infrastructures
@@ -16,18 +17,25 @@ namespace KK.Workflow.Service.Infrastructures
         }
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
-            await using var transaction = await _dataContext.Database.BeginTransactionAsync(cancellationToken);
-            try
+            var useTransaction = true;
+            if (request is BaseRequest baseRequest) useTransaction = baseRequest.UseTransaction;
+            if (useTransaction)
             {
-                var response = await next();
-                await transaction.CommitAsync(cancellationToken);
-                return response;
+                await using var transaction = await _dataContext.Database.BeginTransactionAsync(cancellationToken);
+                try
+                {
+                    var response = await next();
+                    await transaction.CommitAsync(cancellationToken);
+                    return response;
+                }
+                catch (Exception)
+                {
+                    await transaction.RollbackAsync(cancellationToken);
+                    throw;
+                }
             }
-            catch (Exception)
-            {
-                await transaction.RollbackAsync(cancellationToken);
-                throw;
-            }
+            var handle = await next();
+            return handle;
         }
     }
 }

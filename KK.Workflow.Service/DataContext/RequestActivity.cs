@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Workflow.Shared;
 
 namespace KK.Workflow.Service.DataContext
 {
-    public class StatusRequest
+    public class RequestActivity
     {
         [Key]
         public Guid Id { get; set; }
+
         [Required]
         public byte RowStatus { get; set; }
         [Required]
@@ -24,10 +24,7 @@ namespace KK.Workflow.Service.DataContext
         [StringLength(64)]
         public string DocumentNumber { get; set; }
         [Required]
-        public ActivityStatusEnum NewRequestStatus { get; set; }
-        [StringLength(64)]
-        [Required]
-        public string DisplayStatus { get; set; }
+        public int ActivityIndex { get; set; }
 
         [Required]
         [StringLength(24)]
@@ -35,26 +32,29 @@ namespace KK.Workflow.Service.DataContext
         [Required]
         [StringLength(64)]
         public string ActorName { get; set; }
-        [Required]
-        public bool IsComplete { get; set; }
-
-        public DateTime? CompleteDate { get; set; }
+        [StringLength(64)]
+        public ActivityStatusEnum RequestStatus { get; set; }
+        [StringLength(64)]
+        public string DisplayStatus { get; set; }
         [StringLength(128)]
-        [Required]
-        public string Subject { get; set; }
-        [Required]
-        public DateTime RequestDate { get; set; }
-        [StringLength(24)]
-        public string LastAssignTo { get; set; }
-        public DateTime? LastAssignDate { get; set; }
+        public string SubjectName { get; set; }
 
-        public DateTime? CommitmentDate { get; set; }
+        public bool IsComplete { get; set; }
+        [StringLength(24)]
+        [Required]
+        public string ActionName { get; set; }
+
+        public DateTime? ActionDate { get; set; }
+
         [Required]
         public SlaTypeEnum SlaType { get; set; }
 
         public int? SlaTime { get; set; }
         [StringLength(128)]
         public string Notes { get; set; }
+        [StringLength(24)]
+        public string IpAddress { get; set; }
+
         [Required]
         [StringLength(24)]
         public string CreatedBy { get; set; }
@@ -65,7 +65,8 @@ namespace KK.Workflow.Service.DataContext
 
         public DateTime? ModifiedDate { get; set; }
 
-        public virtual ProcessActivity ProcessActivity { get; set; }
-        public IEnumerable<InboxRequest> InboxRequests { get; set; }
+
+
+        public ProcessActivity ProcessActivity { get; set; }
     }
 }

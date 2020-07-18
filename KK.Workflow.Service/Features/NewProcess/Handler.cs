@@ -15,17 +15,15 @@ namespace KK.Workflow.Service.Features.NewProcess
     {
         private readonly IApiLogger _apiLogger;
         private readonly WorkflowDataContext _dataContext;
-        private readonly NumberingHelper _numbering;
 
-        public Handler(IApiLogger apiLogger, WorkflowDataContext dataContext, NumberingHelper numbering)
+        public Handler(IApiLogger apiLogger, WorkflowDataContext dataContext)
         {
             _apiLogger = apiLogger;
             _dataContext = dataContext;
-            _numbering = numbering;
         }
         public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
         {
-            if (request.ActionName != ActionTypeEnum.New)
+            if (request.ActionName != ActionTypeEnum.Submit)
                 throw new Exception(StaticMessage.INVALID_REQUEST_TYPE);
 
             var now = DateTime.Now;
@@ -66,7 +64,6 @@ namespace KK.Workflow.Service.Features.NewProcess
                 ActorCode = request.UserName,
                 ActorName = request.FullName,
                 Subject = processActivity.SubjectName.PopulateTemplate(request.RequestNumber, request.UserName, request.ActionName, request.DocumentNumber),
-                ReferenceKey = request.ReferenceKey,
                 IsComplete = false,
                 DocumentName = request.DocumentName,
                 DocumentNumber = request.DocumentNumber
@@ -93,7 +90,6 @@ namespace KK.Workflow.Service.Features.NewProcess
                 SlaTime = processActivity.SlaTime,
                 SlaType = processActivity.SlaType,
                 SubjectName = processActivity.SubjectName.PopulateTemplate(request.RequestNumber, request.UserName, request.ActionName, request.DocumentNumber),
-                ReferenceKey = request.ReferenceKey,
                 RequestNumber = request.RequestNumber,
                 DocumentName = request.DocumentName,
                 DocumentNumber = request.DocumentNumber,
@@ -129,7 +125,6 @@ namespace KK.Workflow.Service.Features.NewProcess
                     JavascriptAction = processActivity.ViewJavascriptAction,
                     UrlAction = processActivity.UrlAction,
                     DisplayStatus = processActivity.DisplayName,
-                    ReferenceKey = request.ReferenceKey,
                     ActionType = ActionTypeEnum.View,
                     DocumentName = request.DocumentName,
                     DocumentNumber = request.DocumentNumber,
@@ -167,7 +162,10 @@ namespace KK.Workflow.Service.Features.NewProcess
 
             ApprovalProcess(processActivity, requestParameter);*/
 
-            return new Response();
+            return new Response
+            {
+                ActivityIndex = processActivity.ActivityIndex
+            };
         }
     }
 }

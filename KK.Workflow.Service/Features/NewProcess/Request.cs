@@ -13,7 +13,6 @@ namespace KK.Workflow.Service.Features.NewProcess
         public string FullName { get; set; }
         public string Notes { get; set; }
         public string RequestNumber { get; set; }
-        public string ReferenceKey { get; set; }
         public string DocumentName { get; set; }
         public string DocumentNumber { get; set; }
         public string HostAddress { get; set; }

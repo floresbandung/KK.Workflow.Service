@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -27,12 +24,11 @@ namespace KK.Workflow.Service.Features.Submit
                 UseTransaction = false
             }, cancellationToken);
 
-            var g = await _mediator.Send(new NewProcess.Request
+            var newProcessResponse = await _mediator.Send(new NewProcess.Request
             {
                 ActionName = request.ActionName,
                 ProcessRequestId = copyResponse.ProcessRequestId,
                 UseTransaction = false,
-                ReferenceKey = request.ReferenceKey,
                 RequestNumber = copyResponse.RequestNumber,
                 DocumentNumber = request.DocumentNumber,
                 Notes = request.Notes,
@@ -42,9 +38,31 @@ namespace KK.Workflow.Service.Features.Submit
                 RequestDate = request.RequestDate,
                 UserName = request.UserName,
                 IpAddress = _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString()
-        }, cancellationToken);
+            }, cancellationToken);
 
-            return  new Response();
+            var response = await _mediator.Send(new Approval.Request
+            {
+                ActivityIndex = newProcessResponse.ActivityIndex,
+                ProcessRequestId = copyResponse.ProcessRequestId,
+                RequestDate = request.RequestDate,
+                FullName = request.UserFullName,
+                UserName = request.UserName,
+                RequestNumber = copyResponse.RequestNumber,
+                DocumentNumber = request.DocumentNumber,
+                DocumentName = request.DocumentName,
+                HostAddress = request.IpAddress,
+                ActionName = request.ActionName,
+                Notes = request.Notes,
+                UseTransaction = false
+            }, cancellationToken);
+            
+
+            return new Response
+            {
+                RequestNumber = copyResponse.RequestNumber,
+                Status = response.NewStatus,
+                DisplayStatus = response.DisplayStatus
+            };
         }
     }
 }
